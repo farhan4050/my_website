@@ -1,0 +1,71 @@
+
+
+<pre class="r"><code># file contains 11 variables and 3.66m rows and is well over 380Mb. 
+# It will take time to download
+
+# URL link to CDC to download data
+url &lt;- &quot;https://data.cdc.gov/api/views/vbim-akqf/rows.csv?accessType=DOWNLOAD&quot;
+
+covid_data &lt;- vroom::vroom(url)%&gt;% # If vroom::vroom(url) doesn&#39;t work, use read_csv(url)
+  clean_names()</code></pre>
+<p>Death rate by age group, sex, and whether the patient had co-morbidities or not</p>
+<pre class="r"><code># We use the covid_data dataset and select the data we need for this graph
+
+data_g1 &lt;- covid_data %&gt;%
+  filter(sex == c(&#39;Male&#39;, &#39;Female&#39;),
+         death_yn != &quot;Unknown&quot;,
+         death_yn !=  &quot;Missing&quot;,
+         medcond_yn !=  &quot;Missing&quot;,
+         medcond_yn !=  &quot;Unknown&quot;,
+         age_group != &#39;Unknown&#39;) %&gt;%
+  group_by(age_group, sex, medcond_yn) %&gt;%
+  summarise(number_of_death = count(death_yn %in% &#39;Yes&#39;),
+            all = count(death_yn %in% c(&#39;Yes&#39;, &#39;No&#39;)),
+            death_rate = 100*number_of_death / all)
+
+# We plot using ggplot2
+
+ggplot(data_g1, aes(x = age_group, y = death_rate, fill = medcond_yn)) + 
+  geom_col() +
+  facet_wrap(~sex) +
+  coord_flip() +
+  theme(axis.text.x = element_text(size = 14, margin=margin(15,0,0,0)),
+        axis.text.y = element_text(size = 14, margin = margin(0,15,0,0)),
+        plot.title = element_text(size = 15, face = &quot;bold&quot;, margin = margin(0,0,30,0)), 
+        axis.title.x = element_text(size=15, face=&quot;bold&quot;, margin=margin(20,0,0,0)),
+        axis.title.y = element_text(size=15, face=&quot;bold&quot;, margin=margin(0,20,0,0))) +
+  labs(x = &quot;&quot;, 
+       y = &quot;Percentage of deaths&quot;,
+       title = &quot;Age and co-morbidities have huge impact on COVID19 fatality rate&quot;,
+       subtitle = &quot;COVID19 death % rate by sex and previous diseases&quot;,
+       fill =&quot;Co-morbidities&quot;)</code></pre>
+<p><img src="Index_files/figure-html/unnamed-chunk-2-1.png" width="648" style="display: block; margin: auto;" /></p>
+<p>Death rate by age group, sex, and whether the patient was admited to Intensive Care Unit (ICU) or not.</p>
+<pre class="r"><code>data_g2 &lt;- covid_data %&gt;%
+  filter(sex == c(&#39;Male&#39;, &#39;Female&#39;),
+         death_yn != &quot;Unknown&quot;,
+         death_yn !=  &quot;Missing&quot;,
+         hosp_yn !=  &quot;Missing&quot;,
+         hosp_yn !=  &quot;Unknown&quot;,
+         age_group != &quot;Unknown&quot;) %&gt;%
+  group_by(age_group, sex, hosp_yn) %&gt;%
+  summarise(number_of_death = count(death_yn %in% &#39;Yes&#39;),
+            all = count(death_yn %in% c(&#39;Yes&#39;, &#39;No&#39;)),
+            death_rate = 100*number_of_death / all)
+
+ggplot(data_g2, aes(x = age_group, y = death_rate, fill = hosp_yn)) +
+  geom_col() +
+  facet_wrap(~sex) +
+  coord_flip() +
+  theme(axis.text.x = element_text(size = 14, margin=margin(15,0,0,0)),
+        axis.text.y = element_text(size = 14, margin = margin(0,15,0,0)),
+        plot.title = element_text(size = 15, face = &#39;bold&#39;, margin = margin(0,0,30,0)),
+        axis.title.x = element_text(size=15, face=&#39;bold&#39;, margin=margin(20,0,0,0)),
+        axis.title.y = element_text(size=15, face=&#39;bold&#39;, margin=margin(0,20,0,0))) +
+  labs(x = &#39;&#39;,
+       y = &#39;Percentage of deaths&#39;,
+       title = &#39;Intensive Care Unit admission predict more severe and deadly infections&#39;,
+       subtitle = &#39;COVID19 death % rate by sex and ICU admissions&#39;, 
+       fill = &#39;ICU admission&#39;)</code></pre>
+<p><img src="Index_files/figure-html/unnamed-chunk-3-1.png" width="648" style="display: block; margin: auto;" /></p>
+<p><img src="/Users/farhanali/Desktop/my_website21/images/covid_death_rate_comorbidities.png" width="100%" style="display: block; margin: auto;" /><img src="/Users/farhanali/Desktop/my_website21/images/covid_death_rate_icu.png" width="100%" style="display: block; margin: auto;" /></p>
