@@ -98,7 +98,7 @@ disqusShortname = ""
       url = "docs/faliCV.pdf"
 
     [[params.tiles.showcase]]
-      title = "Tempus"
+      title = "IMDB Ratings"
       subtitle = "Feugiat Amet Tempus"
       image = "pic02.jpg"
       url = "blogs/tempus"
