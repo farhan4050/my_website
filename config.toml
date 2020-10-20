@@ -95,7 +95,7 @@ disqusShortname = ""
       title = "Here's my resume"
       subtitle = "My Experiences"
       image = "fali.barcelona.png"
-      url = "docs/fali.pdf"
+      url = "docs/faliCV.pdf"
 
     [[params.tiles.showcase]]
       title = "Tempus"
