@@ -97,12 +97,12 @@ disqusShortname = ""
       image = "projects/fali.barcelona.png"
       url = "docs/faliCV.pdf"
 
-    [[params.tiles.showcase]]
-      title = "IMDB Ratings"
-      subtitle = "Feugiat Amet Tempus"
-      image = "pic02.jpg"
-      url = "blogs/tempus"
-
+      [[params.tiles.showcase]]
+      title = "Wine & Beer"
+      subtitle = "Which country has the highest consuption?"
+      image = "projects/bnw.jpg"
+      url = "projects/project1"
+      
     [[params.tiles.showcase]]
       title = "Magna"
       subtitle = "Lorem Etiam Nullam"
@@ -127,7 +127,7 @@ disqusShortname = ""
   [params.two]
     enable = true
     title = "About Me"
-    subtitle = """Hi! My name is Farhan and I'm from Pakistan. I did my undergrad from Turkey and am currently doing my Master's degree from London Business School.This is my portfolio website, hope you like it!""" 
+    subtitle = """Hi! My name is Farhan and I'm from Pakistan. I did my undergrad from Turkey and am currently doing my Master's degree from London Business School. This is my portfolio website, hope you like it!""" 
     buttonText = "My Projects"
     url = "projects"
 
