@@ -104,7 +104,7 @@ disqusShortname = ""
       url = "projects/project1"
       
     [[params.tiles.showcase]]
-      title = "Magna"
+      title = "IMDB"
       subtitle = "Lorem Etiam Nullam"
       image = "pic03.jpg"
       url = "blogs/magna"
