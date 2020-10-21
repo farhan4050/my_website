@@ -116,9 +116,6 @@ disqusShortname = ""
     enable = true
     title = "About Me"
     subtitle = """Hi! My name is Farhan and I'm from Pakistan. I did my undergrad from Bilkent University, Turkey and am currently doing my Master's from London Business School. This is my portfolio website - I hope you like it!""" 
-    buttonText = "My Projects"
-    url = "projects"
-
 
   # Contact section
   [params.contact]
