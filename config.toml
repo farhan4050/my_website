@@ -98,10 +98,10 @@ disqusShortname = ""
       url = "projects/project2"
 
     [[params.tiles.showcase]]
-      title = "Ipsum"
-      subtitle = "Nisl Sed Aliquam"
-      image = "pic04.jpg"
-      url = "blogs/ipsum"
+      title = "Yield Curve Inversion"
+      subtitle = "Does it singnal a recession?"
+      image = "projects/recession.jpeg"
+      url = "projects/project3"
 
   [params.blog]
     # All blogs defined in their own files. You can find example blogs
