@@ -92,8 +92,8 @@ disqusShortname = ""
       url = "projects/project1"
       
     [[params.tiles.showcase]]
-      title = "COVID-19"
-      subtitle = "Death Rate"
+      title = "Airbnb Shanghai"
+      subtitle = "How much would 4 nights cost?"
       image = "projects/covid19.jpg"
       url = "projects/project2"
 
